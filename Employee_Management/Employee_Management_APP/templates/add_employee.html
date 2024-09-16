@@ -4,7 +4,7 @@
 <h1>Information Form:</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- Corrected form rendering to display all fields -->
+    {{ form.as_p }} 
     <p>  
        <button type="submit">Save Data</button>
     </p>  
