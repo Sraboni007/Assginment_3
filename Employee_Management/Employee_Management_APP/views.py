@@ -21,12 +21,12 @@ def user_logout(request):
     logout(request)
     return redirect('home')
 
-@login_required
+
 def home(request):
     employees = Employee.objects.all()
     return render(request, 'home.html', {'employees': employees})
 
-@login_required
+
 def add_employee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -37,7 +37,7 @@ def add_employee(request):
         form = EmployeeForm()
     return render(request, 'add_employee.html', {'form': form})
 
-@login_required
+
 def update_employee(request, pk):
     employee = Employee.objects.get(pk=pk)
     if request.method == 'POST':
@@ -49,7 +49,6 @@ def update_employee(request, pk):
         form = EmployeeForm(instance=employee)
     return render(request, 'update_employee.html', {'form': form, 'employee': employee})
 
-@login_required
 def delete_employee(request, pk):
     try:
         employee = Employee.objects.get(pk=pk)
@@ -60,7 +59,7 @@ def delete_employee(request, pk):
         return HttpResponse("Employee does not exist")
     return render(request, 'delete_employee.html', {'employee': employee})
 
-@login_required
+
 def employee_list(request):
     employees = Employee.objects.all()
     return render(request, 'employee_list.html', {'employees': employees})

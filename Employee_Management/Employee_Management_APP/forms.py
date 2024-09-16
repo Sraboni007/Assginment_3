@@ -31,6 +31,14 @@ class EmployeeForm(forms.ModelForm):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
+        is_valid = False
+        if phone_number.strip()[0] == "+" and phone_number.strip()[1:].isdigit():
+            is_valid = True
+        elif phone_number.isdigit():
+            is_valid = True
+        if not is_valid:
+             raise forms.ValidationError("Enter a valid phone number")
+            
         if Employee.objects.filter(phone_number=phone_number).exclude(pk=self.instance.pk).exists():
             raise forms.ValidationError("An employee with this phone number already exists.")
         return phone_number
