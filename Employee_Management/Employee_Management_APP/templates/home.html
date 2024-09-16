@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>All Employees</h1>
+<ul>
+    {% for employee in employees %}
+        <li>{{ employee.name }} - {{ employee.designation }} - {{ employee.short_description }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_employee' %}">Add New Employee</a>
+{% endblock %}

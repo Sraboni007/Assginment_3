@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Information Form:</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Corrected form rendering to display all fields -->
+    <p>  
+       <button type="submit">Save Data</button>
+    </p>  
+</form>
+{% endblock %}
